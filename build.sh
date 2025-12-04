@@ -3,8 +3,14 @@ set -e
 
 echo "🚀 Starting Flutter Web build for Cloudflare Pages..."
 
-# Flutter SDKのパスを設定（Cloudflare Pagesの環境による）
-export PATH="$PATH:/opt/buildhome/.flutter/bin"
+# Flutter SDKをインストール
+if [ ! -d "$HOME/flutter" ]; then
+    echo "📦 Installing Flutter SDK..."
+    bash ./install_flutter.sh
+fi
+
+# Flutter SDKのパスを設定
+export PATH="$HOME/flutter/bin:$PATH"
 
 # Flutterのバージョンを確認
 flutter --version
